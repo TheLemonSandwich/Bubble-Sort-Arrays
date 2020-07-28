@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+void BubbleSort(int, int* a, int);
+int main()
+{
+	int size = 5;
+	int* a = new int[size];
+	int i = -1;
+	do
+	{
+		i++;
+		if (i == size)
+		{
+			int* temp = new int[size * 2];
+			for (int i = 0; i < size; i++)
+				temp[i] = a[i];
+			a = temp;
+			size *= 2;
+		}
+		cout << ">>\t";
+		cin >> *(a + i);
+	} while (*(a + i) != -1);
+
+	BubbleSort(i, a, i);
+
+
+	//Displaying to check
+
+	for (int j = 0; j < i; j++)
+		cout << a[j] << " ";
+}
+
+void BubbleSort(int size, int* a, int counter)
+{
+	while (true)
+	{
+		if (counter == 1)
+			break;
+		for (int j = 1; j < counter; j++)
+			if (a[j] < a[j - 1])
+				swap(a[j], a[j - 1]);
+
+
+		BubbleSort(size, a, --counter);
+	}
+}
